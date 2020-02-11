@@ -36,7 +36,8 @@ public class Palindrome {
      * and populates the internal data structure with the dates that are palindromes.
      */
     public Palindrome(int begin, int end) {
-	palindromes = new ArrayList<>();
+	// Set initial ArrayList capacity to 350 to account for matches from 1000 to 9999
+	palindromes = new ArrayList<>(350);
 	for (int i = begin; i <= end; i++) {
 	    String month = getMonth(i);
 	    String day = getDay(i);
@@ -90,9 +91,8 @@ public class Palindrome {
 	    // Check to see if the day of month is valid
 	    if (dayNum <= max) {
 		return true;
-	    } else {
-		return false;
 	    }
+	    return false;
 	}
 	return false;
     }
@@ -119,7 +119,10 @@ public class Palindrome {
     public String toString() {
 	String ret = "";
 	for (int i = 0; i < palindromes.size(); i++) {
-	    ret += palindromes.get(i) + "\n";
+	    ret += palindromes.get(i);
+	    if (i != palindromes.size() - 1) {
+		ret += "\n";
+	    }
 	}
 	return ret;
     }
